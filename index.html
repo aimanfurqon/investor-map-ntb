@@ -3,147 +3,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peta Potensi Investasi Nusa Tenggara Barat - DPMPTSP NTB</title>
+    <title>Peta Investasi Nusa Tenggara Barat - DPMPTSP NTB</title>
     
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- Chart.js for data visualization -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- Custom CSS File -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <h3>Memuat Data Investasi NTB...</h3>
-            <p>Mohon tunggu sebentar</p>
-        </div>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
     </div>
 
-    <!-- Main Application Container -->
-    <div class="app-container">
-        <!-- Application Header -->
-        <header class="app-header">
+    <div class="container">
+        <!-- Enhanced Header -->
+        <header class="header">
             <div class="header-content">
                 <div class="header-logo">
-                    <!-- Pastikan file logo ada di folder yang sama atau ganti path-nya -->
-                    <img src="dpmptsp-ntb-logo.png" alt="Logo DPMPTSP NTB" onerror="this.onerror=null;this.src='https://placehold.co/200x70/0D47A1/FFFFFF?text=DPMPTSP+NTB';">
+                    <img src="images/dpmptsp-ntb-logo.png" alt="Logo DPMPTSP NTB" class="dpmptsp-logo">
+                </div>
+                <div class="header-icon">
+                    <i class="fas fa-chart-line"></i>
                 </div>
                 <div class="header-text">
-                    <h1>Peta Potensi Investasi NTB</h1>
-                    <p>Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu</p>
+                    <h1>Peta Investasi NTB</h1>
+                    <p>Dashboard Realisasi Investasi Real-time</p>
+                    <small class="header-agency">Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu</small>
                 </div>
             </div>
             <div class="header-stats">
-                <div class="header-stat-item">
-                    <div id="total-investment-header" class="stat-number">-</div>
-                    <div class="stat-label">Total Investasi</div>
+                <div class="stat-item">
+                    <span class="stat-number" id="total-regions">10</span>
+                    <span class="stat-label">Kab/Kota</span>
                 </div>
-                <div class="header-stat-item">
-                    <div id="total-companies-header" class="stat-number">-</div>
-                    <div class="stat-label">Total Perusahaan</div>
+                <div class="stat-item">
+                    <span class="stat-number" id="header-total-companies">-</span>
+                    <span class="stat-label">Perusahaan</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="header-total-investment">-</span>
+                    <span class="stat-label">Total Investasi</span>
                 </div>
             </div>
         </header>
-
-        <!-- Main Content Grid -->
-        <main class="main-grid">
-            <!-- Sidebar Widgets -->
-            <aside class="sidebar">
-                <div class="widget">
-                    <h3><i class="fas fa-search"></i> Cari Wilayah</h3>
-                    <div class="search-box">
-                        <input type="text" id="search-input" placeholder="Contoh: Mataram...">
-                        <button id="search-btn"><i class="fas fa-search"></i></button>
-                    </div>
-                </div>
-
-                <div class="widget">
-                    <h3><i class="fas fa-map-signs"></i> Legenda Peta</h3>
-                    <div class="legend-items">
-                        <div class="legend-item"><div class="legend-color kabupaten"><i class="fas fa-mountain"></i></div><div class="legend-text"><span class="legend-title">Kabupaten</span><span class="legend-desc">Pusat Ekonomi Regional</span></div></div>
-                        <div class="legend-item"><div class="legend-color kota"><i class="fas fa-city"></i></div><div class="legend-text"><span class="legend-title">Kota</span><span class="legend-desc">Pusat Perdagangan & Jasa</span></div></div>
-                        <div class="legend-item"><div class="legend-color ibu-kota"><i class="fas fa-star"></i></div><div class="legend-text"><span class="legend-title">Ibu Kota Provinsi</span><span class="legend-desc">Pusat Pemerintahan</span></div></div>
-                    </div>
-                </div>
-            </aside>
-
-            <!-- Map Section -->
-            <section class="map-section">
-                <div class="map-container">
-                    <div class="map-header">
-                        <h3><i class="fas fa-location-dot"></i> Peta Investasi Interaktif</h3>
-                        <div class="map-controls"><button id="reset-view" title="Reset View"><i class="fas fa-sync-alt"></i></button></div>
-                    </div>
-                    <div id="map"></div>
-                </div>
-            </section>
-        </main>
-
-        <!-- Dashboard Section -->
-        <section class="dashboard-section">
-            <div class="dashboard-header">
-                <h2><i class="fas fa-chart-bar"></i> Analisis Investasi</h2>
-                <div class="dashboard-controls">
-                    <button class="dashboard-btn active" data-view="overview">Ringkasan</button>
-                    <button class="dashboard-btn" data-view="ranking">Peringkat</button>
+        
+        <!-- Map Container -->
+        <div class="map-container">
+            <div class="map-header">
+                <h3><i class="fas fa-location-dot"></i> Peta Realisasi Investasi NTB</h3>
+                <div class="map-controls">
+                    <button class="control-btn" id="reset-view" title="Reset View">
+                        <i class="fas fa-home"></i>
+                    </button>
+                    <button class="control-btn" id="fullscreen" title="Fullscreen">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                    <button class="control-btn" id="refresh-data" title="Refresh Data">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
                 </div>
             </div>
-            <!-- Overview Content -->
+            <div id="map"></div>
+            <div class="map-footer">
+                <p><i class="fas fa-info-circle"></i> Data berdasarkan realisasi investasi terbaru dari DPMPTSP NTB</p>
+            </div>
+        </div>
+        
+        <!-- Enhanced Sidebar -->
+        <div class="sidebar">
+            <div class="search-container">
+                <h3><i class="fas fa-search"></i> Pencarian Wilayah</h3>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Cari kabupaten/kota...">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="search-suggestions" id="search-suggestions"></div>
+            </div>
+            
+            <div class="legend">
+                <h3><i class="fas fa-layer-group"></i> Keterangan Peta</h3>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <div class="legend-color ibu-kota">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="legend-text">
+                            <span class="legend-title">Ibu Kota Provinsi</span>
+                            <span class="legend-desc">Kota Mataram</span>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color kota">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="legend-text">
+                            <span class="legend-title">Kota</span>
+                            <span class="legend-desc">Kota Bima</span>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color kabupaten">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <div class="legend-text">
+                            <span class="legend-title">Kabupaten</span>
+                            <span class="legend-desc">8 Kabupaten di NTB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="legend-note">
+                    <i class="fas fa-lightbulb" style="color: #ffd43b;"></i>
+                    <strong>Catatan:</strong> Ukuran marker sebanding dengan nilai realisasi investasi
+                </div>
+            </div>
+            
+            <!-- Investment Type Filter -->
+            <div class="investment-filter">
+                <h3><i class="fas fa-filter"></i> Filter Jenis Investasi</h3>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-globe"></i> Semua
+                    </button>
+                    <button class="filter-btn" data-filter="PMA">
+                        <i class="fas fa-flag"></i> PMA
+                    </button>
+                    <button class="filter-btn" data-filter="PMDN">
+                        <i class="fas fa-home"></i> PMDN
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Top Sectors -->
+            <div class="sector-categories">
+                <h3><i class="fas fa-industry"></i> Sektor Investasi Utama</h3>
+                <div class="category-tags" id="sector-tags">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Interactive Dashboard -->
+        <div class="dashboard-section">
+            <div class="dashboard-header">
+                <h2><i class="fas fa-chart-bar"></i> Dashboard Analisis Investasi NTB</h2>
+                <div class="dashboard-controls">
+                    <button class="dashboard-btn active" data-view="overview">
+                        <i class="fas fa-chart-pie"></i> Ringkasan
+                    </button>
+                    <button class="dashboard-btn" data-view="ranking">
+                        <i class="fas fa-trophy"></i> Peringkat
+                    </button>
+                    <button class="dashboard-btn" data-view="sectors">
+                        <i class="fas fa-industry"></i> Analisis Sektor
+                    </button>
+                    <button class="dashboard-btn" data-view="companies">
+                        <i class="fas fa-building"></i> Profil Perusahaan
+                    </button>
+                    <button class="dashboard-btn" data-view="trends">
+                        <i class="fas fa-chart-line"></i> Tren & Proyeksi
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Overview Dashboard -->
             <div id="overview-dashboard" class="dashboard-content active">
-                <div class="overview-grid">
-                    <div class="stats-group">
-                         <div class="stat-card">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--gradient-accent);">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-info">
                             <div class="stat-value" id="total-investment-display">-</div>
                             <div class="stat-label">Total Realisasi Investasi</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value" id="total-companies-display">-</div>
-                            <div class="stat-label">Total Perusahaan</div>
+                            <div class="stat-additional" id="additional-capital-display">-</div>
                         </div>
                     </div>
-                    <div class="stats-group">
-                        <div class="stat-card">
-                            <div class="stat-value" id="pma-percentage">-</div>
-                            <div class="stat-label">Proporsi PMA</div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--gradient-success);">
+                            <i class="fas fa-building"></i>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-value" id="pmdn-percentage">-</div>
-                            <div class="stat-label">Proporsi PMDN</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="total-companies-display">-</div>
+                            <div class="stat-label">Total Perusahaan Investor</div>
+                            <div class="stat-additional" id="active-companies">Aktif beroperasi</div>
                         </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--gradient-main);">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="pma-stats">-</div>
+                            <div class="stat-label">Penanaman Modal Asing (PMA)</div>
+                            <div class="stat-additional" id="pma-percentage">-% dari total</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #51cf66, #40c057);">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="pmdn-stats">-</div>
+                            <div class="stat-label">Penanaman Modal Dalam Negeri (PMDN)</div>
+                            <div class="stat-additional" id="pmdn-percentage">-% dari total</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h4><i class="fas fa-chart-bar"></i> Top 10 Wilayah Berdasarkan Investasi</h4>
+                        <div id="investment-chart"></div>
                     </div>
                     <div class="chart-container">
-                        <canvas id="investmentChart"></canvas>
+                        <h4><i class="fas fa-chart-pie"></i> Distribusi Investasi per Sektor</h4>
+                        <div id="sector-chart"></div>
                     </div>
                 </div>
             </div>
-            <!-- Ranking Content -->
+            
+            <!-- Ranking Dashboard -->
             <div id="ranking-dashboard" class="dashboard-content">
-                 <div class="ranking-grid">
-                    <div class="ranking-card" id="region-ranking-card">
-                        <h4><i class="fas fa-trophy"></i> Peringkat Wilayah (by Investasi)</h4>
-                        <div class="ranking-list" id="region-ranking-list"></div>
+                <div class="ranking-grid">
+                    <div class="ranking-section">
+                        <h4><i class="fas fa-trophy"></i> Peringkat Wilayah (Realisasi Investasi)</h4>
+                        <div id="region-ranking" class="ranking-list"></div>
                     </div>
-                     <div class="ranking-card" id="company-ranking-card">
-                        <h4><i class="fas fa-building"></i> Peringkat Perusahaan (by Investasi)</h4>
-                        <div class="ranking-list" id="company-ranking-list"></div>
+                    <div class="ranking-section">
+                        <h4><i class="fas fa-medal"></i> Top 15 Perusahaan Investor Terbesar</h4>
+                        <div id="company-ranking" class="ranking-list"></div>
                     </div>
                 </div>
             </div>
-        </section>
+            
+            <!-- Sectors Dashboard -->
+            <div id="sectors-dashboard" class="dashboard-content">
+                <div class="sectors-grid" id="sectors-breakdown"></div>
+            </div>
+            
+            <!-- Companies Dashboard -->
+            <div id="companies-dashboard" class="dashboard-content">
+                <div class="companies-filter">
+                    <h4>Filter Perusahaan</h4>
+                    <div class="filter-options">
+                        <select id="sector-filter">
+                            <option value="">Semua Sektor</option>
+                        </select>
+                        <select id="region-filter">
+                            <option value="">Semua Wilayah</option>
+                        </select>
+                        <select id="type-filter">
+                            <option value="">PMA & PMDN</option>
+                            <option value="PMA">PMA Saja</option>
+                            <option value="PMDN">PMDN Saja</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="companies-grid" id="companies-breakdown"></div>
+            </div>
+            
+            <!-- Trends Dashboard -->
+            <div id="trends-dashboard" class="dashboard-content">
+                <div class="trends-analysis">
+                    <h4><i class="fas fa-chart-line"></i> Analisis Tren Investasi</h4>
+                    <div class="trend-insights" id="trend-insights"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Memuat Data Investasi NTB...</h3>
+            <p>Menganalisis data realisasi investasi terbaru</p>
+        </div>
+    </div>
 
-    <!-- Custom JavaScript File -->
-    <script src="script.js"></script>
+    <!-- Data Processor -->
+    <script src="js/data-processor.js"></script>
+    
+    <!-- Investment Data -->
+    <script>
+        // Load investment data dari file JSON
+        let investmentDataProcessor;
+        let rawInvestmentData;
+        
+        // Data akan diload dari investment-data.json
+        fetch('data/investment-data.json')
+            .then(response => response.json())
+            .then(data => {
+                rawInvestmentData = data;
+                investmentDataProcessor = new InvestmentDataProcessor(data);
+                console.log('Data investasi berhasil dimuat:', investmentDataProcessor.getTotalStatistics());
+            })
+            .catch(error => {
+                console.error('Error loading investment data:', error);
+                // Fallback untuk development
+                showErrorMessage('Gagal memuat data investasi. Pastikan file data/investment-data.json tersedia.');
+            });
+    </script>
+    
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="js/script.js"></script>
 </body>
 </html>

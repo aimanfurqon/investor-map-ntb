@@ -1,0 +1,581 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mataram",
+        "type": "Ibu Kota",
+        "population": "441,546",
+        "kode_wilayah": "52.71",
+        "total_investment": "3044235580377",
+        "total_companies": 5,
+        "pma_companies": 2,
+        "pmdn_companies": 3,
+        "main_sectors": ["Telekomunikasi", "Perdagangan", "Kelautan dan Perikanan"],
+        "top_companies": [
+          {
+            "name": "XLSMART TELECOM SEJAHTERA",
+            "sector": "Telekomunikasi",
+            "investment": "1827358609517",
+            "type": "PMA",
+            "kbli": "61200",
+            "district": "Mataram"
+          },
+          {
+            "name": "AGRINDO NUSANTARA", 
+            "sector": "Perdagangan",
+            "investment": "727830634210",
+            "type": "PMDN",
+            "kbli": "46319",
+            "district": "Sandubaya"
+          },
+          {
+            "name": "INDOSAT",
+            "sector": "Telekomunikasi", 
+            "investment": "253927304487",
+            "type": "PMA",
+            "kbli": "61200",
+            "district": "Mataram"
+          },
+          {
+            "name": "AIR MINUM GIRI MENANG",
+            "sector": "Kelautan dan Perikanan",
+            "investment": "118085467163",
+            "type": "PMDN",
+            "kbli": "36001",
+            "district": "Selaprang"
+          },
+          {
+            "name": "BINTANG BALI INDAH",
+            "sector": "Perdagangan",
+            "investment": "117033565000",
+            "type": "PMDN",
+            "kbli": "46333",
+            "district": "Sandubaya"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.1178, -8.5833]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lombok Barat",
+        "type": "Kabupaten",
+        "population": "679,871",
+        "kode_wilayah": "52.01",
+        "total_investment": "1797146623935",
+        "total_companies": 5,
+        "pma_companies": 0,
+        "pmdn_companies": 5,
+        "main_sectors": ["ESDM", "Pariwisata dan Ekonomi Kreatif", "Perindustrian"],
+        "top_companies": [
+          {
+            "name": "PELAYANAN LISTRIK NASIONAL BATAM",
+            "sector": "ESDM",
+            "investment": "927119472934",
+            "type": "PMDN",
+            "kbli": "35111",
+            "district": "Gerung"
+          },
+          {
+            "name": "BLISS PEMBANGUNAN SEJAHTERA",
+            "sector": "Pariwisata dan Ekonomi Kreatif",
+            "investment": "419637796264",
+            "type": "PMDN",
+            "kbli": "68111",
+            "district": "Narmada"
+          },
+          {
+            "name": "NARMADA AWET MUDA",
+            "sector": "Perindustrian",
+            "investment": "171066640896",
+            "type": "PMDN",
+            "kbli": "11051",
+            "district": "Lingsar"
+          },
+          {
+            "name": "GRAHA SENGGIGI",
+            "sector": "Pariwisata dan Ekonomi Kreatif",
+            "investment": "149658714241",
+            "type": "PMDN",
+            "kbli": "55110",
+            "district": "Batu Layar"
+          },
+          {
+            "name": "RAJAWALI ADIMANDALIKA",
+            "sector": "Pariwisata dan Ekonomi Kreatif",
+            "investment": "129264000000",
+            "type": "PMDN",
+            "kbli": "55110",
+            "district": "Batu Layar"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [116.1047, -8.6500]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lombok Tengah",
+        "type": "Kabupaten",
+        "population": "980,167",
+        "kode_wilayah": "52.02",
+        "total_investment": "12195893056730",
+        "total_companies": 5,
+        "pma_companies": 2,
+        "pmdn_companies": 3,
+        "main_sectors": ["Pariwisata dan Ekonomi Kreatif", "ESDM"],
+        "top_companies": [
+          {
+            "name": "PENGEMBANGAN PARIWISATA INDONESIA",
+            "sector": "Pariwisata dan Ekonomi Kreatif",
+            "investment": "9009123215123",
+            "type": "PMDN",
+            "kbli": "68120",
+            "district": "-"
+          },
+          {
+            "name": "GOODWIND POWER INDONESIA",
+            "sector": "ESDM",
+            "investment": "1606800000000",
+            "type": "PMDN", 
+            "kbli": "35111",
+            "district": "Pujut"
+          },
+          {
+            "name": "LOMBOK INVEST AND DEVELOPMENT",
+            "sector": "Pariwisata dan Ekonomi Kreatif",
+            "investment": "472873030683",
+            "type": "PMA",
+            "kbli": "55194",
+            "district": "Praya Barat"
+          },
+          {
+            "name": "LAPORTE KELUARGA SEJAHTRA",
+            "sector": "Pariwisata dan Ekonomi Kreatif", 
+            "investment": "96583321638",
+            "type": "PMA",
+            "kbli": "55194",
+            "district": "Praya Barat"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.3081, -8.7000]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lombok Timur",
+        "type": "Kabupaten",
+        "population": "1,325,240",
+        "kode_wilayah": "52.03",
+        "total_investment": "1779778484656",
+        "total_companies": 5,
+        "pma_companies": 1,
+        "pmdn_companies": 4,
+        "main_sectors": ["ESDM", "Peternakan", "Perindustrian"],
+        "top_companies": [
+          {
+            "name": "PT. PERUSAHAAN LISTRIK NEGARA",
+            "sector": "ESDM",
+            "investment": "1407288042467",
+            "type": "PMDN",
+            "kbli": "35115",
+            "district": "Sambelia"
+          },
+          {
+            "name": "DELAPAN MENIT ENERGI",
+            "sector": "ESDM",
+            "investment": "144729626405",
+            "type": "PMA",
+            "kbli": "35111",
+            "district": "Sambelia"
+          },
+          {
+            "name": "IRADAT AMAN",
+            "sector": "ESDM",
+            "investment": "111364559251",
+            "type": "PMDN",
+            "kbli": "35111",
+            "district": "Pringgabaya"
+          },
+          {
+            "name": "CHAROEN POKPHAND JAYA FARM",
+            "sector": "Peternakan",
+            "investment": "79422227020",
+            "type": "PMDN",
+            "kbli": "01468",
+            "district": "Pringgabaya"
+          },
+          {
+            "name": "DOK DAN PERKAPALAN AIR KANTUNG",
+            "sector": "Perindustrian",
+            "investment": "36974027513",
+            "type": "PMDN",
+            "kbli": "33151",
+            "district": "Pringgabaya"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.5472, -8.5500]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lombok Utara",
+        "type": "Kabupaten",
+        "population": "230,899",
+        "kode_wilayah": "52.08",
+        "total_investment": "864942150646",
+        "total_companies": 5,
+        "pma_companies": 1,
+        "pmdn_companies": 4,
+        "main_sectors": ["Pariwisata dan Ekonomi Kreatif"],
+        "top_companies": [
+          {
+            "name": "WAKA OBEROI INDONESIA",
+            "sector": "Pariwisata dan Ekonomi Kreatif",
+            "investment": "298277153856",
+            "type": "PMA",
+            "kbli": "55110",
+            "district": "Tanjung"
+          },
+          {
+            "name": "JAYA HAMPARAN LOMBOK",
+            "sector": "Pariwisata dan Ekonomi Kreatif",
+            "investment": "166778174203",
+            "type": "PMDN",
+            "kbli": "55110",
+            "district": "Pemenang"
+          },
+          {
+            "name": "MEKARAYA INTERNUSA",
+            "sector": "Pariwisata dan Ekonomi Kreatif",
+            "investment": "162535939853",
+            "type": "PMDN",
+            "kbli": "55110",
+            "district": "Tanjung"
+          },
+          {
+            "name": "PRAPAT AGUNG PERMAI",
+            "sector": "Pariwisata dan Ekonomi Kreatif",
+            "investment": "120899357655",
+            "type": "PMDN",
+            "kbli": "55110",
+            "district": "Pemenang"
+          },
+          {
+            "name": "WALTER PROPERTINDO JAYA",
+            "sector": "Pariwisata dan Ekonomi Kreatif",
+            "investment": "116451525079",
+            "type": "PMDN",
+            "kbli": "55113",
+            "district": "Pemenang"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.4067, -8.3500]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sumbawa",
+        "type": "Kabupaten",
+        "population": "439,909",
+        "kode_wilayah": "52.04",
+        "total_investment": "1629958323189",
+        "total_companies": 5,
+        "pma_companies": 0,
+        "pmdn_companies": 5,
+        "main_sectors": ["ESDM", "Perdagangan", "Perindustrian"],
+        "top_companies": [
+          {
+            "name": "PT. PERUSAHAAN LISTRIK NEGARA",
+            "sector": "ESDM",
+            "investment": "531151255969",
+            "type": "PMDN",
+            "kbli": "35115",
+            "district": "Labuhan Badas"
+          },
+          {
+            "name": "CHAROEN POKPHAND INDONESIA",
+            "sector": "Perdagangan",
+            "investment": "434477903300",
+            "type": "PMDN",
+            "kbli": "52101",
+            "district": "Moyo Hilir"
+          },
+          {
+            "name": "SUMBAWA JUTARAYA",
+            "sector": "Perindustrian",
+            "investment": "271595378206",
+            "type": "PMDN",
+            "kbli": "24201",
+            "district": "Ropang"
+          },
+          {
+            "name": "SUMBER REJEKI POWER",
+            "sector": "ESDM",
+            "investment": "207753285189",
+            "type": "PMDN",
+            "kbli": "35111",
+            "district": "Unter Iwes"
+          },
+          {
+            "name": "SUMBAWA JUTARAYA",
+            "sector": "ESDM",
+            "investment": "185480600525",
+            "type": "PMDN",
+            "kbli": "07301",
+            "district": "Ropang"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [117.4181, -8.4667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sumbawa Barat",
+        "type": "Kabupaten",
+        "population": "135,689",
+        "kode_wilayah": "52.09",
+        "total_investment": "287498166628133",
+        "total_companies": 5,
+        "pma_companies": 2,
+        "pmdn_companies": 3,
+        "main_sectors": ["ESDM", "Perindustrian"],
+        "top_companies": [
+          {
+            "name": "AMMAN MINERAL NUSA TENGGARA",
+            "sector": "ESDM",
+            "investment": "234990859636484",
+            "type": "PMDN",
+            "kbli": "07294",
+            "district": "Sekongkang"
+          },
+          {
+            "name": "AMMAN MINERAL INDUSTRI",
+            "sector": "Perindustrian",
+            "investment": "17386161163299",
+            "type": "PMDN",
+            "kbli": "24202",
+            "district": "Maluk"
+          },
+          {
+            "name": "MACMAHON INDONESIA",
+            "sector": "ESDM",
+            "investment": "17239364616487",
+            "type": "PMA",
+            "kbli": "09900",
+            "district": "Sekongkang"
+          },
+          {
+            "name": "AMMAN MINERAL NUSA TENGGARA",
+            "sector": "ESDM",
+            "investment": "15775802514269",
+            "type": "PMDN",
+            "kbli": "07294",
+            "district": "Sekongkang"
+          },
+          {
+            "name": "JURONG ENGINEERING LESTARI",
+            "sector": "ESDM",
+            "investment": "2105964077594",
+            "type": "PMA",
+            "kbli": "43211",
+            "district": "Maluk"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.8167, -8.7167]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dompu",
+        "type": "Kabupaten",
+        "population": "230,696",
+        "kode_wilayah": "52.05",
+        "total_investment": "7984768655151",
+        "total_companies": 5,
+        "pma_companies": 2,
+        "pmdn_companies": 3,
+        "main_sectors": ["ESDM", "Perdagangan", "Pertanian", "Perindustrian"],
+        "top_companies": [
+          {
+            "name": "SUMBAWA TIMUR MINING",
+            "sector": "ESDM",
+            "investment": "7802569572664",
+            "type": "PMA",
+            "kbli": "07301",
+            "district": "Hu'u"
+          },
+          {
+            "name": "SEGER AGRO NUSANTARA",
+            "sector": "Perdagangan",
+            "investment": "69588510000",
+            "type": "PMDN",
+            "kbli": "46201",
+            "district": "Pekat"
+          },
+          {
+            "name": "SUKSES MANTAP SEJAHTERA",
+            "sector": "Pertanian",
+            "investment": "47391075499",
+            "type": "PMDN",
+            "kbli": "01140",
+            "district": "Pekat"
+          },
+          {
+            "name": "SUKSES MANTAP SEJAHTERA",
+            "sector": "Perindustrian",
+            "investment": "37523608495",
+            "type": "PMDN",
+            "kbli": "10721",
+            "district": "Pekat"
+          },
+          {
+            "name": "MACMAHON MINING SERVICES",
+            "sector": "ESDM",
+            "investment": "27695888493",
+            "type": "PMA",
+            "kbli": "09900",
+            "district": "Hu'u"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [118.4667, -8.5333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bima",
+        "type": "Kabupaten",
+        "population": "440,232",
+        "kode_wilayah": "52.06",
+        "total_investment": "916465202413",
+        "total_companies": 5,
+        "pma_companies": 1,
+        "pmdn_companies": 4,
+        "main_sectors": ["Pariwisata dan Ekonomi Kreatif", "Perdagangan", "Kelautan dan Perikanan", "Perindustrian"],
+        "top_companies": [
+          {
+            "name": "TENGGARA POINT RESORT",
+            "sector": "Pariwisata dan Ekonomi Kreatif",
+            "investment": "382652766534",
+            "type": "PMA",
+            "kbli": "55194",
+            "district": "Parado"
+          },
+          {
+            "name": "CHAROEN POKPHAND INDONESIA",
+            "sector": "Perdagangan",
+            "investment": "198867748959",
+            "type": "PMDN",
+            "kbli": "52101",
+            "district": "Madapangga"
+          },
+          {
+            "name": "GOLDEN PALM SURYATAMA",
+            "sector": "Pariwisata dan Ekonomi Kreatif",
+            "investment": "190382025581",
+            "type": "PMDN",
+            "kbli": "55110",
+            "district": "Sape"
+          },
+          {
+            "name": "TIRTAMAS MUTIARA",
+            "sector": "Kelautan dan Perikanan",
+            "investment": "89000197224",
+            "type": "PMDN",
+            "kbli": "03219",
+            "district": "Langgudu"
+          },
+          {
+            "name": "SANGGARAGRO KARYAPERSADA",
+            "sector": "Perindustrian",
+            "investment": "55563464705",
+            "type": "PMDN",
+            "kbli": "20294",
+            "district": "Tambora"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [118.7167, -8.4667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kota Bima",
+        "type": "Kota",
+        "population": "149,859",
+        "kode_wilayah": "52.72",
+        "total_investment": "197901240959",
+        "total_companies": 3,
+        "pma_companies": 0,
+        "pmdn_companies": 3,
+        "main_sectors": ["Transportasi", "Kesehatan", "Perdagangan"],
+        "top_companies": [
+          {
+            "name": "PERUSAHAAN GAS NEGARA",
+            "sector": "Transportasi",
+            "investment": "146299999999",
+            "type": "PMDN",
+            "kbli": "49300",
+            "district": "Asakota"
+          },
+          {
+            "name": "RS PKU MUHAMMADIYAH BIMA",
+            "sector": "Kesehatan",
+            "investment": "33415106982",
+            "type": "PMDN",
+            "kbli": "86103",
+            "district": "Mpunda"
+          },
+          {
+            "name": "SAKA AGUNG ABADI",
+            "sector": "Perdagangan",
+            "investment": "18186133978",
+            "type": "PMDN",
+            "kbli": "46634",
+            "district": "Rasanae Barat"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [118.7267, -8.4600]
+      }
+    }
+  ]
+}
