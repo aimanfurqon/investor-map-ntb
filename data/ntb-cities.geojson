@@ -1,0 +1,195 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mataram",
+        "type": "Ibu Kota",
+        "population": "441,000",
+        "economic_potential": [
+          "Perdagangan dan Jasa",
+          "Pariwisata",
+          "Industri Kerajinan",
+          "Pusat Pemerintahan",
+          "Pendidikan"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.1178, -8.5833]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lombok Barat",
+        "type": "Kabupaten",
+        "population": "680,000",
+        "economic_potential": [
+          "Pariwisata Pantai",
+          "Pertanian Padi",
+          "Perikanan",
+          "Industri Kerajinan Tenun",
+          "Perkebunan Kelapa"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.1047, -8.6500]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lombok Tengah",
+        "type": "Kabupaten",
+        "population": "980,000",
+        "economic_potential": [
+          "Pertanian Padi dan Jagung",
+          "Peternakan Sapi",
+          "Industri Kerajinan Gerabah",
+          "Pariwisata Budaya",
+          "Perkebunan Tembakau"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.3081, -8.7000]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lombok Timur",
+        "type": "Kabupaten",
+        "population": "1,325,000",
+        "economic_potential": [
+          "Pertanian Padi",
+          "Perikanan Laut",
+          "Industri Garam",
+          "Pariwisata Pantai Pink",
+          "Peternakan"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.5472, -8.5500]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lombok Utara",
+        "type": "Kabupaten",
+        "population": "230,000",
+        "economic_potential": [
+          "Pariwisata Gili Trawangan",
+          "Perikanan",
+          "Pertanian Organik",
+          "Industri Kerajinan",
+          "Ekowisata"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.4067, -8.3500]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sumbawa",
+        "type": "Kabupaten",
+        "population": "440,000",
+        "economic_potential": [
+          "Pertambangan Emas",
+          "Peternakan Kuda dan Sapi",
+          "Pertanian Padi",
+          "Industri Madu",
+          "Pariwisata Alam"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [117.4181, -8.4667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sumbawa Barat",
+        "type": "Kabupaten",
+        "population": "135,000",
+        "economic_potential": [
+          "Pertambangan",
+          "Perikanan",
+          "Pertanian Padi",
+          "Peternakan",
+          "Kehutanan"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.8167, -8.7167]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dompu",
+        "type": "Kabupaten",
+        "population": "230,000",
+        "economic_potential": [
+          "Pertanian Padi dan Jagung",
+          "Peternakan Kerbau",
+          "Perikanan",
+          "Pertambangan Marmer",
+          "Industri Kerajinan"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [118.4667, -8.5333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bima",
+        "type": "Kabupaten",
+        "population": "440,000",
+        "economic_potential": [
+          "Pertanian Padi",
+          "Peternakan Sapi dan Kerbau",
+          "Perikanan Laut",
+          "Industri Garam",
+          "Pariwisata Pantai"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [118.7167, -8.4667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kota Bima",
+        "type": "Kota",
+        "population": "150,000",
+        "economic_potential": [
+          "Perdagangan dan Jasa",
+          "Pelabuhan",
+          "Industri Pengolahan Ikan",
+          "Pariwisata",
+          "Pendidikan"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [118.7267, -8.4600]
+      }
+    }
+  ]
+}
