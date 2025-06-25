@@ -152,14 +152,21 @@ function createAnimatedMarker(feature) {
     });
     
     const popupContent = createEnhancedPopupContent(feature.properties);
+    
+    // Konfigurasi popup yang lebih baik
     marker.bindPopup(popupContent, {
-        maxWidth: 450,
+        maxWidth: 400,
+        maxHeight: 500, // Batasi tinggi popup
         className: 'custom-popup',
         closeButton: true,
         autoClose: false,
-        closeOnClick: false
+        closeOnClick: false,
+        autoPan: true, // Otomatis pan ke popup
+        autoPanPadding: [20, 20], // Padding saat auto pan
+        keepInView: true // Jaga popup tetap dalam view
     });
     
+    // Event handlers
     marker.on('mouseover', function(e) {
         L.DomEvent.stopPropagation(e);
         const markerElement = this._icon.querySelector('.custom-marker');
@@ -181,6 +188,7 @@ function createAnimatedMarker(feature) {
     
     marker.on('click', function(e) {
         L.DomEvent.stopPropagation(e);
+        // Tutup popup lain yang terbuka
         markersLayer.eachLayer(layer => {
             if (layer !== this && layer.isPopupOpen()) {
                 layer.closePopup();
@@ -191,7 +199,6 @@ function createAnimatedMarker(feature) {
     
     return marker;
 }
-
 function createEnhancedPopupContent(properties) {
     const sectorIcons = {
         'ESDM': 'fas fa-bolt',
@@ -210,7 +217,12 @@ function createEnhancedPopupContent(properties) {
         return sectorIcons[sector] || 'fas fa-chart-line';
     }
 
-    let topCompaniesList = properties.top_companies
+    // Batasi jumlah perusahaan yang ditampilkan di popup
+    const maxCompaniesInPopup = 3;
+    const topCompanies = properties.top_companies.slice(0, maxCompaniesInPopup);
+    const remainingCompanies = properties.top_companies.length - maxCompaniesInPopup;
+
+    let topCompaniesList = topCompanies
         .map((company, index) => `
             <div class="company-item">
                 <div class="company-rank">#${index + 1}</div>
@@ -228,6 +240,18 @@ function createEnhancedPopupContent(properties) {
                 </div>
             </div>
         `).join('');
+
+    // Tambahkan tombol "Lihat Semua" jika ada lebih banyak perusahaan
+    if (remainingCompanies > 0) {
+        topCompaniesList += `
+            <div class="show-more-companies">
+                <button class="show-more-btn" onclick="showAllCompanies('${properties.name}')">
+                    <i class="fas fa-plus-circle"></i>
+                    Lihat ${remainingCompanies} Perusahaan Lainnya
+                </button>
+            </div>
+        `;
+    }
 
     let sectorsList = properties.main_sectors
         .map(sector => `
@@ -280,7 +304,7 @@ function createEnhancedPopupContent(properties) {
                 </div>
                 
                 <div class="investment-section">
-                    <h5><i class="fas fa-trophy"></i> Top Investor</h5>
+                    <h5><i class="fas fa-trophy"></i> Top ${maxCompaniesInPopup} Investor</h5>
                     <div class="companies-list">
                         ${topCompaniesList}
                     </div>
@@ -292,9 +316,287 @@ function createEnhancedPopupContent(properties) {
                         ${sectorsList}
                     </div>
                 </div>
+                
+                <div class="popup-actions">
+                    <button class="action-btn detail-btn" onclick="showDetailModal('${properties.name}')">
+                        <i class="fas fa-info-circle"></i>
+                        Detail Lengkap
+                    </button>
+                    <button class="action-btn close-btn" onclick="closeAllPopups()">
+                        <i class="fas fa-times"></i>
+                        Tutup
+                    </button>
+                </div>
             </div>
         </div>
     `;
+}
+
+function showDetailModal(regionName) {
+    const regionData = citiesData.find(city => city.properties.name === regionName);
+    if (!regionData) return;
+    
+    const properties = regionData.properties;
+    
+    // Buat modal overlay
+    const modalOverlay = document.createElement('div');
+    modalOverlay.className = 'modal-overlay';
+    modalOverlay.innerHTML = `
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3><i class="fas fa-map-marker-alt"></i> ${properties.name}</h3>
+                <button class="modal-close" onclick="closeDetailModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-tabs">
+                    <button class="tab-btn active" data-tab="overview">
+                        <i class="fas fa-chart-bar"></i> Ringkasan
+                    </button>
+                    <button class="tab-btn" data-tab="companies">
+                        <i class="fas fa-building"></i> Perusahaan (${properties.top_companies.length})
+                    </button>
+                    <button class="tab-btn" data-tab="sectors">
+                        <i class="fas fa-industry"></i> Sektor
+                    </button>
+                </div>
+                
+                <div class="tab-content">
+                    <div class="tab-pane active" id="overview-tab">
+                        ${createOverviewTab(properties)}
+                    </div>
+                    <div class="tab-pane" id="companies-tab">
+                        ${createCompaniesTab(properties)}
+                    </div>
+                    <div class="tab-pane" id="sectors-tab">
+                        ${createSectorsTab(properties)}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modalOverlay);
+    
+    // Setup tab switching
+    setupModalTabs();
+    
+    // Tutup modal jika klik di luar
+    modalOverlay.addEventListener('click', function(e) {
+        if (e.target === modalOverlay) {
+            closeDetailModal();
+        }
+    });
+}
+
+// Fungsi untuk membuat tab overview
+function createOverviewTab(properties) {
+    const pmaCount = properties.pma_count || 0;
+    const pmdnCount = properties.pmdn_count || 0;
+    const totalCompanies = pmaCount + pmdnCount;
+    
+    return `
+        <div class="overview-content">
+            <div class="overview-stats">
+                <div class="overview-stat">
+                    <div class="stat-icon-large">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">${properties.population}</div>
+                        <div class="stat-label">Populasi</div>
+                    </div>
+                </div>
+                <div class="overview-stat">
+                    <div class="stat-icon-large">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">${formatCurrency(properties.total_investment)}</div>
+                        <div class="stat-label">Total Investasi</div>
+                    </div>
+                </div>
+                <div class="overview-stat">
+                    <div class="stat-icon-large">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">${totalCompanies}</div>
+                        <div class="stat-label">Perusahaan</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="investment-breakdown">
+                <h4><i class="fas fa-chart-pie"></i> Breakdown Investasi</h4>
+                <div class="breakdown-items">
+                    <div class="breakdown-item">
+                        <div class="breakdown-icon pma">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="breakdown-content">
+                            <div class="breakdown-label">Penanaman Modal Asing (PMA)</div>
+                            <div class="breakdown-value">${pmaCount} Perusahaan</div>
+                        </div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-icon pmdn">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                        <div class="breakdown-content">
+                            <div class="breakdown-label">Penanaman Modal Dalam Negeri (PMDN)</div>
+                            <div class="breakdown-value">${pmdnCount} Perusahaan</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Fungsi untuk membuat tab perusahaan dengan scroll
+function createCompaniesTab(properties) {
+    const sectorIcons = {
+        'ESDM': 'fas fa-bolt',
+        'Pariwisata dan Ekonomi Kreatif': 'fas fa-camera',
+        'Perdagangan': 'fas fa-store',
+        'Perindustrian': 'fas fa-industry',
+        'Kelautan dan Perikanan': 'fas fa-fish',
+        'Telekomunikasi': 'fas fa-tower-cell',
+        'Transportasi': 'fas fa-truck',
+        'Kesehatan': 'fas fa-hospital',
+        'Pertanian': 'fas fa-seedling',
+        'Peternakan': 'fas fa-cow'
+    };
+    
+    function getSectorIcon(sector) {
+        return sectorIcons[sector] || 'fas fa-chart-line';
+    }
+    
+    const companiesList = properties.top_companies
+        .map((company, index) => `
+            <div class="modal-company-item">
+                <div class="company-rank-large">#${index + 1}</div>
+                <div class="company-content">
+                    <div class="company-header">
+                        <div class="company-name">${company.name}</div>
+                        <div class="company-type-badge ${company.type}">${company.type}</div>
+                    </div>
+                    <div class="company-details">
+                        <div class="company-sector">
+                            <i class="${getSectorIcon(company.sector)}"></i>
+                            ${company.sector}
+                        </div>
+                        <div class="company-investment">${formatCurrency(company.investment)}</div>
+                        ${company.district ? `<div class="company-location"><i class="fas fa-map-marker-alt"></i> ${company.district}</div>` : ''}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    
+    return `
+        <div class="companies-content">
+            <div class="companies-header">
+                <h4><i class="fas fa-building"></i> Semua Perusahaan Investor</h4>
+                <div class="companies-count">${properties.top_companies.length} Perusahaan</div>
+            </div>
+            <div class="companies-list-modal">
+                ${companiesList}
+            </div>
+        </div>
+    `;
+}
+
+// Fungsi untuk membuat tab sektor
+function createSectorsTab(properties) {
+    const sectorIcons = {
+        'ESDM': 'fas fa-bolt',
+        'Pariwisata dan Ekonomi Kreatif': 'fas fa-camera',
+        'Perdagangan': 'fas fa-store',
+        'Perindustrian': 'fas fa-industry',
+        'Kelautan dan Perikanan': 'fas fa-fish',
+        'Telekomunikasi': 'fas fa-tower-cell',
+        'Transportasi': 'fas fa-truck',
+        'Kesehatan': 'fas fa-hospital',
+        'Pertanian': 'fas fa-seedling',
+        'Peternakan': 'fas fa-cow'
+    };
+    
+    function getSectorIcon(sector) {
+        return sectorIcons[sector] || 'fas fa-chart-line';
+    }
+    
+    const sectorsList = properties.main_sectors
+        .map(sector => `
+            <div class="modal-sector-item">
+                <div class="sector-icon-large">
+                    <i class="${getSectorIcon(sector)}"></i>
+                </div>
+                <div class="sector-name">${sector}</div>
+            </div>
+        `).join('');
+    
+    return `
+        <div class="sectors-content">
+            <div class="sectors-header">
+                <h4><i class="fas fa-industry"></i> Sektor Ekonomi Utama</h4>
+                <div class="sectors-count">${properties.main_sectors.length} Sektor</div>
+            </div>
+            <div class="sectors-grid-modal">
+                ${sectorsList}
+            </div>
+        </div>
+    `;
+}
+
+// Setup tab switching dalam modal
+function setupModalTabs() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetTab = btn.dataset.tab;
+            
+            // Update active tab button
+            tabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Update active tab pane
+            tabPanes.forEach(pane => pane.classList.remove('active'));
+            document.getElementById(`${targetTab}-tab`).classList.add('active');
+        });
+    });
+}
+
+// Fungsi untuk menutup modal
+function closeDetailModal() {
+    const modalOverlay = document.querySelector('.modal-overlay');
+    if (modalOverlay) {
+        modalOverlay.remove();
+    }
+}
+
+// Fungsi untuk menutup semua popup
+function closeAllPopups() {
+    markersLayer.eachLayer(layer => {
+        if (layer.isPopupOpen()) {
+            layer.closePopup();
+        }
+    });
+}
+
+// Fungsi untuk menampilkan semua perusahaan dalam popup yang lebih kecil
+function showAllCompanies(regionName) {
+    showDetailModal(regionName);
+    // Langsung switch ke tab companies
+    setTimeout(() => {
+        const companiesTab = document.querySelector('.tab-btn[data-tab="companies"]');
+        if (companiesTab) {
+            companiesTab.click();
+        }
+    }, 100);
 }
 
 async function loadNTBData() {
