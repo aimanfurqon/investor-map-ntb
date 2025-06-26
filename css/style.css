@@ -2445,7 +2445,6 @@ body {
     border-radius: 2px;
 }
 
-/* Fade effect untuk scroll dalam popup */
 .popup-body::before {
     content: '';
     position: sticky;
